@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toques de Corneta</title>
+    <link rel="icon" href="./assets/icons/corneta.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./sources/css/style.css">
+</head>
+<body>
+    <div class="title-bar">
+        <div id="close"></div>
+        <div id="minimize"></div>
+        <div id="maximize"></div>
+    </div>
+
+    <header>
+        <div class="containerHeaderL">
+            <div id="visualizer-PFL">
+                <div class="bar-container">
+                    <div id="barLeft" ></div>
+                </div>
+
+                <div class="bar-container">
+                    <div id="barRight"></div>
+                </div>
+            </div>
+
+            <div id="playPauseNprogressBar">
+                <div id="playPause">
+
+                </div>
+
+                <div id="progress-container">
+                    <span id="current-time">0:00</span>
+    
+                        <div id="container-progress" style="width: 90%; height: 70%; display: flex; justify-content: center; align-items: center;">
+                            <div id="progress-bar">
+                                <div id="progress" style="border-radius: 5px; height: 4px; width: 0%; background: #fffffe;"></div>
+                                <div id="bulletProgress" style="display: none; width: 9px; height: 9px; margin-left: -5px; background-color: #fffffe; border-radius: 50%;"></div>
+                            </div>        
+                        </div>
+                        
+                    <span id="total-time">0:00</span>
+                </div>
+            </div>
+
+            
+        </div>
+        
+
+        
+        <span class="containerHeader" style="display: flex; flex-direction: row; align-items: center; justify-content: center;" >Toques De Corneta <img style="margin-left: 15px; width: 50px;" src="./assets/icons/corneta.ico" alt="Minha Figura" draggable="false"> </span>
+        
+
+        <div class="containerHeaderR">
+
+            <div class="dropdown">
+                <button class="dropbtn" id="dropbtn">Menu</button>
+                <div class="dropdown-content" id="dropdownContent">
+                  <div class="playlist-item">
+                    <span>teste</span>
+                    <div class="editPlaylist"></div>
+                  </div>
+                </div>
+              </div>
+              
+        </div>
+    </header>
+
+    <main>
+        <div class="sombra"></div>
+
+        <div id="button-container">
+            <!-- Botões de toques serão gerados aqui -->
+        </div>
+
+        
+
+        <div class="actions">
+            <button id="addNewCard">Criar Novo Cartão + </button>
+            <button id="add-tones-btn">Adicionar Toques <span style="font-size: 3vw; margin-left: 0.5vw;">+</span></button>
+            <button id="edit-btn"><img id="edit-img" src="./assets/icons/pencil.png" alt="Imagem de lapis representando que ao clicar aqui você edita os cards" draggable="false"></button>
+            
+        </div>
+        
+    </main>
+
+    <div id="shadowForm">
+        <div id="formContainer">
+            <div class="formShadow">
+                <div id="closeForm"></div>
+
+                <div class="previewCard">
+                    <span style="user-select: none;" id='testPlayAudio'>Aperte no cartão para ouvir o áudio</span>
+                    <div id="card0" class="tone-button selected">
+                        <div id="cardshadow" style="display: none;">Apenas para pegar o id</div>
+                        <div id="img0" class="img-container" style="background-image: url(&quot;./assets/images/cards/sentido.png&quot;); background-repeat: no-repeat; background-size: contain; background-position: 50% 50%;" draggable="false"></div>
+                            <span id="previewCardName">Sentido</span>
+                        </div>
+                    <audio id="audioPlayer" style="display: none;"></audio>
+                </div>
+
+                <div id="slider-container">
+                    <div id="volumeSliderContainer">
+                        <div id="volumeSliderFrame">
+                            <div id="volumeSliderContent"></div>
+                            <div id="bulletProgress" style="display: flex; width: 9px; height: 9px;  background-color: #fffffe; border-radius: 50%; margin-bottom: -5px; z-index: 11;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="labelsContainer">
+                        <div class="slider-label">-100</div>
+                        <div class="slider-label">-75</div>
+                        <div class="slider-label">-50</div>
+                        <div class="slider-label">-25</div>
+                        <div class="slider-label">-0</div>
+                    </div>
+                    <span style="font-size: 10px; color: #fffffe; bottom: 1px; position: absolute; user-select: none; ">Volume</span>
+                    
+                </div>
+
+                <div class="inputThings">
+                    <div class="formHeader">
+                        <h1 id="h1text" style="user-select: none;">Criar Novo Cartão</h1>
+                    </div>
+                    
+                    <form id="cardForm">
+                        <div>
+                            <label id="labelInput" for="name" style="user-select: none;">Nome do Toque</label>
+                            <input type="text" id="name" name="name" placeholder="Sentido" spellcheck="false" required>
+                        </div>
+                        
+                        <div>
+                            <label id="labelInput" for="image" style="user-select: none;">Imagem do Cartão</label>
+                            <div class="file-upload">
+                                <input type="file" id="image" name="image" accept="image/*" hidden>
+                                <label id="btnFile" for="image" style="user-select: none;">Escolher arquivo</label>
+                                <span id="imageFile" style="user-select: none;">Nenhum arquivo selecionado</span>
+                            </div>
+                        </div>
+                        
+                        
+                        <div>
+                            <label id="labelInput" for="audio" style="user-select: none;">Áudio do Toque</label>
+                            <div class="file-upload">
+                                <input type="file" id="audio" name="audio" accept="audio/*" hidden>
+                                <label id="btnFile" for="audio" style="user-select: none;">Escolher arquivo</label>
+                                <span id="audioFile" style="user-select: none;">Nenhum arquivo selecionado</span>
+                            </div>
+                        </div>
+
+                        <div id="excluirCardContainer">
+                            <div id="confirmDeleteCard" style="user-select: none;">
+                                <span>Tem certeza que deseja excluir este cartão?</span>
+                                <div id="containerSimNao"><p id="simDellCard">Sim</p><p id="cancelDellCard">Não</p></div>
+                            </div>
+                            <span id="deleteCard" style="user-select: none;">Excluir cartão</span>
+                        </div>
+                        
+                        <button id="submitButton" type="submit" style="user-select: none;">Salvar ✔</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./renderer.js" defer></script>
+
+
+
+</body>
+</html>
+
+<!--
+
+
+
+Quando acabar subir no github e mudar o nome do outro para web
+
+Feito caramba é isso aí nunca duvidei, 3 dias puxaaaaados pra acabae isso aqui
+- adicionar novo card do 0 -> ta em eventlisteners
+- arrumar o adicionar novo card na parte de tocar o audio, quando salvar o card o audio deve reiniciar, sla voltar a ser null
+- Arrumar imput da playlist
+- editar cards mudar nome, imagem, e audio
+- Arrumar o nova playlist
+- excluir cards
+- fazer o volume funcionar(Esse achei que ia ser dificil foi só 2 linhas)
+-->

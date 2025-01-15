@@ -1,0 +1,914 @@
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    user-select: none;
+}
+
+body {
+    list-style-type: none;
+    font-family: "Spline Sans Mono", Arial, sans-serif;
+    margin: 0;
+    height: 100dvh;
+
+    background-image: url("../../assets/images/backgrounds/background.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: 23%;
+    
+}
+
+.title-bar {
+    height: 2vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    background-color: #000f01;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    z-index: 100000;
+}
+
+#close, #minimize, #maximize{
+    border-radius: 50%;
+    width: 10px;
+    aspect-ratio: 1 / 1;
+    background-color: #fcbf44;
+}
+
+#close{
+    background-color: #fb5c58;
+}
+#maximize{
+    background-color: #39c94e;
+}
+
+header {
+    width: 100%;
+    height: 7vh;
+    background-color: #12120d;
+    margin: 0;
+    /* padding: 20px 0; */
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 10;
+    top: 2.5vh;
+}
+.containerHeader, .containerHeaderL, .containerHeaderR {
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+.containerHeaderL{
+    justify-content: flex-end;
+}
+.containerHeaderR{
+    justify-content: flex-start;
+}
+
+header span {
+    font-family: "Black Ops One", Arial, sans-serif;
+    font-size: 2.3vw;
+    color: #FFF;
+
+}
+#playPauseNprogressBar {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    padding: 2.5% 0 0 0;
+}
+
+#playPause{
+    background-color: #FFF;
+    width: 9%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-image: url('../../assets/icons/play.png');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: 59% 50%;
+    
+}
+/* Monitor PFL */
+#visualizer-PFL {
+    display: flex;
+    align-items: end;
+    width: 10%;
+    height: 100%;
+}
+
+.bar-container{
+    width: 8px;
+    height: 90%;
+    border-radius: 5px;
+    margin: 0 2px 0 2px;
+    background-color: #4c4c4c;
+    overflow: hidden;
+
+    display: flex;
+    align-items: end;
+}
+
+#barLeft, #barRight {
+    width: 7px;
+    height: 5%;
+    background-color: white;
+    transition: height 0.09s;
+}
+
+/* Barra de Progresso */
+#progress-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+#progress-bar {
+    height: 4px;
+    width: 97%;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #4c4c4c;
+    
+}
+
+#current-time, #total-time {
+    font-family: "Nunito", sans-serif;
+    color: white;
+    font-size: 12px;
+    margin: 0 5px;
+}
+
+
+
+.dropdown {
+    width: 90%;
+    height: 70%;
+    font-family: "Nunito", sans-serif;
+    /* background-color: #0d6efd; */
+}
+
+.dropbtn {
+    width: 100%;
+    height: 100%;
+    background-color: #292928;
+    color: white;
+    padding: 5px;
+    font-family: "Nunito", sans-serif;
+    font-size: 1vw;
+    border: solid 1px #313131;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropbtn:after {
+    content: "▼"; /* seta para baixo */
+    margin-left: 8px;
+    margin-top: 3px;
+}
+
+.dropdown-content {
+    display: none;
+    width: 100%;
+    background-color: #292928;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 0 0 5px 5px;
+}
+
+
+
+.playlist-edit-input {
+    border: none;
+    width: 100%; /* Ajusta a largura do input */
+    padding: 5px 8px;
+    font-family: "Nunito", sans-serif;
+    font-size: 0.9em;
+    border-radius: 2px;
+    outline: none;
+    box-shadow: 3px 5px 15px 1px rgba(0, 0, 0, 0.5);
+    background-color: #5e5e5e;
+    color: #fffffe;
+}
+
+
+.playlist-item, #new-playlist {
+    color: #afafaf;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    overflow: hidden;
+}
+.playlist-item span, #new-playlist span{
+    font-family: "Nunito", sans-serif;
+    display: flex;
+    flex-grow: 1; /* O texto ocupa o espaço disponível */
+    font-size: 0.9em; /* Tamanho inicial da fonte */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona '...' ao final do texto se ele for cortado */
+
+}
+
+.playlist-item:hover, #new-playlist:hover {
+    background-color: #383838;
+    color: #FFF;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex; /* exibe as opções ao passar o mouse */
+    flex-direction: column;
+}
+
+.editPlaylist{
+    aspect-ratio: 1/1;
+    background-image: url('../../assets/icons/whitepencil.png');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 30% 40%;
+    width: 20px;
+    min-width: 20px; /* Garante uma largura mínima */
+    height: 20px; /* Define uma altura fixa */
+    margin-left: 10px; /* Espaçamento entre o texto e o ícone */
+
+    
+}
+
+.Sumicon{
+    aspect-ratio: 1/1; 
+   background-image: url('../../assets/icons/sum.png');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: 30% 40%;
+
+    width: 9%;
+    width: 20px;
+    min-width: 20px; /* Garante uma largura mínima */
+    height: 20px; /* Define uma altura fixa */
+    margin-left: 10px; /* Espaçamento entre o texto e o ícone */
+
+    
+}
+
+
+
+main {
+    height: auto;
+    min-height: 95vh;
+    padding-top: 11vh;
+    
+}
+
+.sombra {
+    position: fixed;
+    top: 20px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+#button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+    gap: 8px;
+    padding-top: 8px;
+}
+
+.tone-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 5px;
+    width: 15vw;
+    min-width: 80px;
+    height: 12vw;
+    min-height: 90px;
+    position: relative;
+    padding: 5px 7px;
+    background: rgba(85, 105, 68, 0.8);
+    border: 2px solid rgba(85, 105, 68, 0.5);
+    border-radius: 15px;
+    transition: background-color 0.3s, border-color 0.3s;
+    cursor: pointer;
+    user-select: none;
+    color: #000;
+}
+
+.editMoveCard {
+    width: 97%;
+    height: 18%;
+    position: absolute;
+    top: 2%;
+    margin: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* background: red; */
+}
+
+.editMoveCard-pencil, .editMoveCard-MoveIcon {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.editMoveCard-MoveIcon {
+    background-image: url("../../assets/icons/move_icon.png");
+    
+}
+
+.editMoveCard-pencil {
+    background-image: url("../../assets/icons/pencil.png");
+    background-size: 50%;
+    background-position: 20% 20%;
+}
+
+
+.img-container {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.tone-button span {
+    /* height: 40%; */
+    width: 100%;
+    text-align: center;
+    text-size-adjust: 50%;
+    overflow: clip;
+    text-overflow: ellipsis;
+    padding: 2px;
+    white-space: pre-line;
+    font-weight: 800;
+    font-size: 1.08vw;
+}
+
+
+
+.tone-button.selected {
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+
+
+.tone-button.dragging {
+    opacity: 0.6;
+}
+
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+
+    height: 10vw;
+    padding: 50px 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.actions button {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+
+#edit-btn {
+    width: 6vw;
+    height: 6vw;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 30px;
+
+}
+
+#edit-btn img {
+    width: 65%;
+    height: auto;
+}
+
+#edit-btn {
+    background-color: #b48b60c4;
+}
+
+#edit-btn.active {
+    background-color: #319934;
+}
+
+
+
+#add-tones-btn, #add-tones-btn.active {
+    width: 14vw;
+    height: 4vw;
+    margin-right: 2vw;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #0d6efd;
+    font-family: 'Spline Sans Mono';
+    font-size: 1.07vw;
+    color: #ffffff;
+}
+
+#add-tones-btn.active {
+    background-color: #319934;
+    width: 6vw;
+    height: 6vw;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 30px;
+}
+
+#addNewCard {
+    padding: 10px;
+    padding-right: 50px;
+    margin-right: -20px;
+    height: 4vw; 
+    background-color: #fffffe; 
+    border-radius: 15px 0 0 15px;
+
+    font-family: "Nunito", sans-serif;
+    font-size: 1.3em;
+    font-weight: bolder;
+
+    display: none;
+    align-items: center;
+}
+
+#shadowForm {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+    display: none; 
+}
+
+#formContainer {
+    position: fixed;
+    left: 20vw;
+    top: 15vh;
+    width: 60vw;
+    height: 70vh;
+    border-radius: 20px;
+    
+    background-image: url("../../assets/images/backgrounds/background.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: 23%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+
+    display: none;/*--------------------------------------------------*/
+}
+
+.formShadow {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 5px 15px 1px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.previewCard {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* background-color: #0d6efd; */
+}
+
+#testPlayAudio {
+    position: absolute;
+    top: -60px;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 15px;
+    transition: top 2.5s ease;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-size: 1em;
+    font-family: 'Nunito', sans-serif;
+}
+
+#closeForm {
+    width: 1.5vw;
+    aspect-ratio: 1 / 1;
+    margin-right: 0px;
+    border-radius: 50%;
+    position: absolute;
+    right: 1%;
+    top: 2%;
+    margin-left: auto;
+    background-image: url("../../assets/icons/sum.png");
+    background-size: cover;
+    transform: rotate(45deg);
+    filter: invert(1) grayscale(1) brightness(0);
+
+}
+
+/*--------------------*/
+#slider-container {
+    height: 100%;
+    width: 6%;
+    align-items: end;
+    justify-content: center;
+    gap: 5px; /* Espaçamento entre o slider e os rótulos */
+    padding-bottom: 15px;
+
+    display: none;
+}
+
+#volumeSliderContainer {
+    width: 30%;
+    height: 40%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+#volumeSliderFrame {
+    height: 100%;
+    width: 25%;
+    border-radius: 10px;
+    background-color: #4c4c4c;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+#volumeSliderContent {
+    height: 50%;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #fffffe;
+}
+
+.labelsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40%;
+}
+.slider-label {
+    font-size: 10px; /* Tamanho da fonte dos rótulos */
+    color: #fffffe;
+    text-align: center; /* Centraliza o texto dos rótulos */
+    font-family: 'Nunito', sans-serif;
+    user-select: none; 
+}
+/*----------------------*/
+
+
+.inputThings {
+    width: 44%;
+    height: 100%;
+    border-radius: 0 10px 10px 0;
+    background-color: #594123e7;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.formHeader{
+    padding-top: 20px;
+    height: 15%;
+    display: flex;
+    align-items: center;
+}
+.formHeader h1{
+    color: #f8d8ae;
+    font-family: "Spline Sans Mono", Arial, sans-serif;
+    font-size: 1.3em;
+
+    margin: 0 auto;
+}
+
+
+#cardForm {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 85%;
+}
+
+#labelInput {
+    color: #b8a186c5;
+    font-size: 0.95em;
+    margin-bottom: 5px;
+}
+
+#cardForm input[type="text"] {
+    border: none;
+    width: 100%; /* Ajusta a largura do input */
+    padding: 10px 8px;
+    font-family: "Spline Sans Mono", Arial, sans-serif;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 2px;
+    outline: none;
+    box-shadow: 3px 5px 15px 1px rgba(0, 0, 0, 0.5);
+    background-color: #f2dea7;
+}
+
+#cardForm input[type="text"]::placeholder {
+    /* margin-left: ; */
+    padding: 10px 0px;
+    color: rgb(156, 137, 114);
+    font-size: 0.9em;
+    opacity: 1; /* Controla a opacidade do placeholder */
+}
+
+
+
+/* Container para o upload */
+.file-upload {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 5px;
+}
+
+/* Estilo do label como botão de upload */
+#btnFile {
+    margin: 0;
+    height: 100%;
+    white-space: nowrap;
+    padding: 10px;
+    background-color: #886337;
+    color: white;
+    font-size: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Efeito ao passar o mouse */
+#btnFile:hover {
+    background-color: #8863376e;
+}
+
+/* Estilo para o nome do arquivo */
+#audioFile, #imageFile {
+    font-size: 0.7em;
+    color: #b8a186c5;
+}
+
+#submitButton {
+    background-color: #319934;
+    transition: background-color 0.3s;
+    border: none;
+    width: 50%;
+    padding: 8px;
+    border-radius: 10px;
+    align-self: center;
+    
+
+    font-family: "Spline Sans Mono", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    color: #FEFEF3;
+
+    box-shadow: 3px 5px 15px 1px rgba(0, 0, 0, 0.3);
+    
+}
+
+#submitButton:hover {
+    background-color: #0c8114;
+}
+
+
+
+
+
+
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {
+    /**/
+}
+
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    /**/
+}
+
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 567px) {
+    main {
+        padding-top: 7vh;
+    }
+
+    #edit-btn, #add-tones-btn.active {
+        width: 11vw;
+        height: 11vw;
+        margin-right: 15px;
+    }
+}
+
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 430px) and (max-width: 767px) {
+    /**/
+    .tone-button {
+        height: 15vw;
+    }
+}
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {
+    /**/
+    .tone-button {
+        height: 23vw;
+
+    }
+
+    .tone-button span {
+        font-size: 1.90vw;
+    }
+}
+
+
+.confirmation-menu {
+    position: absolute;
+    top: 0;
+    background-color: #292928;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Garanta que o menu de confirmação esteja sobre outros elementos */
+}
+.confirmation-menu p {
+    margin: 0 0 10px;
+}
+.confirmation-menu button {
+    margin-right: 5px;
+    background-color: #4CAF50; /* Verde para o botão "Sim" */
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+.confirmation-menu button:hover {
+    background-color: #45a049; /* Efeito hover para o botão "Sim" */
+}
+
+.deleteButton {
+    width: 17px;
+    aspect-ratio: 1 / 1;
+    background-color: transparent;
+    background-image: url('../../assets/icons/trash.png');
+    background-size: cover; /* Ajusta a imagem para cobrir todo o botão */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    filter: invert(1) grayscale(1) brightness(10);
+    border: none;
+    cursor: pointer;
+}
+
+#confirmationMenu {
+    background-color: #4b4b4b;
+    position: absolute;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+#btnContainer {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+}
+
+#confirmMessage {
+    color: #FFFFFF;
+}
+
+#cancelDelete, #confirmDelete {
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 5px;
+    padding: 6px;
+    font-weight: bold;
+    background-color: #0c8114;
+    color: #FFFFFF;
+}
+
+#cancelDelete {
+    background-color: rgb(153, 14, 14);
+}
+
+#excluirCardContainer {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#deleteCard{
+    background-color: rgb(153, 14, 14);
+    padding: 10px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+
+    display: flex;
+}
+#confirmDeleteCard {
+    display: none;
+    background-color: #292928;
+    padding: 10px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+}
+
+#containerSimNao {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 10px;  
+}
+
+#simDellCard, #cancelDellCard {
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 5px;
+    padding: 6px 10px;
+    font-weight: bold;
+    background-color: #0c8114;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+#cancelDellCard {
+    background-color: rgb(153, 14, 14);
+}
+#simDellCard:hover {
+    background-color: #419947;
+}
+#cancelDellCard:hover {
+    background-color: rgb(163, 56, 56);
+}

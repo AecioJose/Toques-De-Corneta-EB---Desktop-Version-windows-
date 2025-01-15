@@ -1,0 +1,14 @@
+# Ignorar node_modules
+node_modules/
+
+# Ignorar arquivos de build
+dist/
+build/
+
+# Ignorar executáveis
+*.exe
+*.dll
+
+# Ignorar logs e temporários
+*.log
+npm-debug.log*
